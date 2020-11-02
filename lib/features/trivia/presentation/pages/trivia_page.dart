@@ -11,8 +11,11 @@ class TriviaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SizedBox(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: const SizedBox(),
     );
   }
 }
