@@ -47,7 +47,7 @@ Future<void> main([
     test(
         'should return remote data when the call to remote service is successful',
         () async {
-      final response = await _triviaService.getQuestion(
+      final response = await _triviaService.getQuestions(
         amount: 10,
         category: 9,
       );

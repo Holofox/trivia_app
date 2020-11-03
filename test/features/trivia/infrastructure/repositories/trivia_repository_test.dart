@@ -49,7 +49,7 @@ Future<void> main([
     test(
         'should return remote data when the call to remote data source is successfull',
         () async {
-      final questions = await _triviaRepository.getQuestion(
+      final questions = await _triviaRepository.getQuestions(
         amount: 10,
         category: 9,
       );

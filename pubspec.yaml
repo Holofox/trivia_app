@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   # Architecture
-  bloc: ^6.0.0
-  flutter_bloc: ^6.0.0
+  bloc: ^6.1.0
+  flutter_bloc: ^6.0.6
   # Lint
   lint: ^1.3.0
   # Http client

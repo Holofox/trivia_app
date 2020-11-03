@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 
-class TriviaQuestion {
-  const TriviaQuestion({
+class Question {
+  const Question({
     @required this.category,
     @required this.type,
     @required this.difficulty,
@@ -9,8 +9,8 @@ class TriviaQuestion {
     @required this.itsTrue,
   });
 
-  factory TriviaQuestion.fromJson(Map<String, dynamic> json) {
-    return TriviaQuestion(
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
       category: json['category'] as String,
       type: json['type'] as String,
       difficulty: json['difficulty'] as String,
