@@ -1,0 +1,15 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${inputName}.freezed.dart';
+part '${inputName}.g.dart';
+
+@freezed
+abstract class ${upperName} with _$${upperName} {
+  const factory ${upperName}({
+    @required int id,
+    @required String name,
+  }) = _${upperName};
+
+  factory ${upperName}.fromJson(Map<String, dynamic> json) =>
+      _$${upperName}FromJson(json);
+}

@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:trivia_app/features/trivia/domain/repositories/i_trivia_repository.dart';
 import 'package:trivia_app/features/trivia/domain/services/i_trivia_service.dart';
@@ -8,6 +9,7 @@ import 'package:trivia_app/features/trivia/infrastructure/models/question_diffic
 import 'package:trivia_app/features/trivia/infrastructure/models/question_response.dart';
 import 'package:trivia_app/features/trivia/infrastructure/models/question_type.dart';
 
+@LazySingleton(as: ITriviaRepository)
 class TriviaRepository implements ITriviaRepository {
   TriviaRepository(this._triviaService);
 
