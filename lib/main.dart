@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:trivia_app/features/trivia_app.dart';
+import 'package:trivia_app/main.config.dart';
 
-void main() {
-  runApp(TriviaApp());
+final GetIt getIt = GetIt.instance;
+
+Future<void> main() async {
+  await initializeInjection();
+  runApp(const TriviaApp());
+}
+
+@injectableInit
+Future<GetIt> initializeInjection() async {
+  return $initGetIt(getIt);
 }

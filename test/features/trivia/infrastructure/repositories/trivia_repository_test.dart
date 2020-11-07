@@ -41,7 +41,7 @@ Future<void> main([
     final httpClient = MockClient((request) async {
       return http.Response(convert.jsonEncode(_body), 200, headers: _headers);
     });
-    final triviaService = TriviaService(httpClient, baseApiEndPoint);
+    final triviaService = TriviaService(); //httpClient, baseApiEndPoint);
     _triviaRepository = TriviaRepository(triviaService);
   });
 
