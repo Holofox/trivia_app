@@ -6,7 +6,7 @@ class Question {
     @required this.type,
     @required this.difficulty,
     @required this.question,
-    @required this.itsTrue,
+    @required this.answer,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
@@ -15,7 +15,7 @@ class Question {
       type: json['type'] as String,
       difficulty: json['difficulty'] as String,
       question: json['question'] as String,
-      itsTrue: json['correct_answer'] == 'True',
+      answer: json['correct_answer'] == 'True',
     );
   }
 
@@ -23,5 +23,5 @@ class Question {
   final String type;
   final String difficulty;
   final String question;
-  final bool itsTrue;
+  final bool answer;
 }
