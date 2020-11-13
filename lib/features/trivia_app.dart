@@ -10,6 +10,7 @@ class TriviaApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
+        buttonColor: Colors.deepOrange,
         scaffoldBackgroundColor: Colors.black,
         cardColor: const Color.fromARGB(255, 26, 28, 28),
       ),

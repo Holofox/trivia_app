@@ -18,22 +18,24 @@ class TriviaPage extends StatelessWidget {
     return BlocProvider<QuestionsBloc>(
       create: (_) => QuestionsBloc()..add(const QuestionsStarted()),
       child: BlocBuilder<QuestionsBloc, QuestionsState>(
-        builder: (context, state) {
-          if (state.currentQuestion == null) {
-            return const Loader();
-          }
-
-          return Scaffold(
-            body: state.isPlaying
-                ? GamePage(
-                    currentQuestion: state.currentQuestion,
-                    questions: state.questions,
-                    score: state.score,
-                  )
-                : ScorePage(score: state.score),
-          );
-        },
+        builder: _buildPage,
       ),
+    );
+  }
+
+  Widget _buildPage(BuildContext context, QuestionsState state) {
+    if (state.currentQuestion == null) {
+      return const Loader();
+    }
+
+    return Scaffold(
+      body: state.isPlaying
+          ? GamePage(
+              currentQuestion: state.currentQuestion,
+              questions: state.questions,
+              score: state.score,
+            )
+          : ScorePage(score: state.score),
     );
   }
 }

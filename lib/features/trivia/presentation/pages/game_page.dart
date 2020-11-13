@@ -46,17 +46,19 @@ class GamePage extends StatelessWidget {
           ).reversed.toList(),
           child: QuestionCard(
             question: currentQuestion,
-            onAnswered: (answer) {
-              if (answer) {
-                _cardController.triggerSwipeRight();
-              } else {
-                _cardController.triggerSwipeLeft();
-              }
-            },
+            onAnswered: _onAnswered,
           ),
         ),
       ],
     );
+  }
+
+  void _onAnswered(bool answer) {
+    if (answer) {
+      _cardController.triggerSwipeRight();
+    } else {
+      _cardController.triggerSwipeLeft();
+    }
   }
 
   void _setAnswer({

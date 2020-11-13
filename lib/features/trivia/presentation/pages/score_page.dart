@@ -35,14 +35,14 @@ class ScorePage extends StatelessWidget {
               color: Theme.of(context).accentColor,
             ),
           ),
-          const SizedBox(height: 20.0),
-          OutlineButton(
+          const SizedBox(height: 30.0),
+          RaisedButton(
             onPressed: () => _restartTapped(context),
-            child: Text(
+            child: const Text(
               'Play again',
               style: TextStyle(
                 fontSize: 20.0,
-                color: Theme.of(context).accentColor,
+                color: Colors.black,
               ),
             ),
           ),
