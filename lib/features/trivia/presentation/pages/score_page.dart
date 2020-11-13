@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trivia_app/features/trivia/presentation/blocs/questions/questions_bloc.dart';
 
 class ScorePage extends StatelessWidget {
   const ScorePage({
@@ -50,6 +52,7 @@ class ScorePage extends StatelessWidget {
   }
 
   void _restartTapped(BuildContext context) {
-
+    final bloc = context.bloc<QuestionsBloc>();
+    bloc.add(const QuestionsRestarted());
   }
 }
