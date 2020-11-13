@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swipeable_card/swipeable_card.dart';
 import 'package:trivia_app/features/trivia/infrastructure/models/question.dart';
-import 'package:trivia_app/features/trivia/presentation/blocs/questions/questions_bloc.dart';
 import 'package:trivia_app/features/trivia/presentation/widgets/question_card.dart';
 
 class GamePage extends StatelessWidget {
@@ -65,7 +63,6 @@ class GamePage extends StatelessWidget {
     @required BuildContext context,
     @required bool answer,
   }) {
-    final answered = QuestionAnswered(answer: answer);
-    context.bloc<QuestionsBloc>().add(answered);
+    
   }
 }

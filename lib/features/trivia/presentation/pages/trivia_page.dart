@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trivia_app/features/trivia/presentation/blocs/questions/questions_bloc.dart';
+import 'package:trivia_app/features/trivia/infrastructure/models/question.dart';
 import 'package:trivia_app/features/trivia/presentation/pages/game_page.dart';
-import 'package:trivia_app/features/trivia/presentation/pages/score_page.dart';
-import 'package:trivia_app/features/trivia/presentation/widgets/loader.dart';
 
 class TriviaPage extends StatelessWidget {
   const TriviaPage({
@@ -15,27 +12,21 @@ class TriviaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<QuestionsBloc>(
-      create: (_) => QuestionsBloc()..add(const QuestionsStarted()),
-      child: BlocBuilder<QuestionsBloc, QuestionsState>(
-        builder: _buildPage,
+    final questions = <Question>[
+     const Question(
+        answer: true,
+        category: 'category',
+        difficulty: 'difficulty',
+        question: 'my question',
+        type: 'type',
       ),
-    );
-  }
-
-  Widget _buildPage(BuildContext context, QuestionsState state) {
-    if (state.currentQuestion == null) {
-      return const Loader();
-    }
-
+    ];
     return Scaffold(
-      body: state.isPlaying
-          ? GamePage(
-              currentQuestion: state.currentQuestion,
-              questions: state.questions,
-              score: state.score,
-            )
-          : ScorePage(score: state.score),
+      body: GamePage(
+        currentQuestion: questions[0],
+        questions: questions,
+        score: 5,
+      ),
     );
   }
 }
