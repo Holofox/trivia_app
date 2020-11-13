@@ -5,10 +5,10 @@ import 'package:trivia_app/features/trivia/presentation/blocs/questions/question
 class ScorePage extends StatelessWidget {
   const ScorePage({
     Key key,
-    @required this.state,
+    @required this.score,
   }) : super(key: key);
 
-  final QuestionsState state;
+  final int score;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ScorePage extends StatelessWidget {
           ),
           const SizedBox(height: 30.0),
           Text(
-            '⭐️ ${state.score}',
+            '⭐️ $score',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28.0,
