@@ -8,7 +8,7 @@ import 'package:trivia_app/features/trivia/infrastructure/repositories/trivia_re
 import 'package:trivia_app/features/trivia/infrastructure/services/trivia_service.dart';
 
 Future<void> main([
-  String baseApiEndPoint = 'https://opentdb.com/api.php',
+  String baseApiEndpoint = 'https://opentdb.com/api.php',
 ]) async {
   const _headers = {'content-type': 'application/json'};
 
@@ -41,7 +41,10 @@ Future<void> main([
     final httpClient = MockClient((request) async {
       return http.Response(convert.jsonEncode(_body), 200, headers: _headers);
     });
-    final triviaService = TriviaService(httpClient, baseApiEndPoint);
+    final triviaService = TriviaService(
+      client: httpClient,
+      baseApiEndpoint: baseApiEndpoint,
+    );
     _triviaRepository = TriviaRepository(triviaService);
   });
 

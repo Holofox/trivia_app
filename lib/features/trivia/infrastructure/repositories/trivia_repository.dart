@@ -9,7 +9,7 @@ import 'package:trivia_app/features/trivia/infrastructure/models/question_respon
 import 'package:trivia_app/features/trivia/infrastructure/models/question_type.dart';
 
 class TriviaRepository implements ITriviaRepository {
-  TriviaRepository(this._triviaService);
+  const TriviaRepository(this._triviaService);
 
   final ITriviaService _triviaService;
 
