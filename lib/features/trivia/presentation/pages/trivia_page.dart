@@ -16,7 +16,7 @@ class TriviaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<QuestionsBloc>(
-      create: (_) => QuestionsBloc()..add(const QuestionsStarted()),
+      create: (_) => QuestionsBloc()..add(const QuestionsStarted(score: 0)),
       child: BlocBuilder<QuestionsBloc, QuestionsState>(
         builder: _buildPage,
       ),

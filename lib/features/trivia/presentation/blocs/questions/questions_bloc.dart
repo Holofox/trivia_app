@@ -44,6 +44,7 @@ class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
       currentQuestion: result.results.removeAt(0),
       questions: result.results,
       isLoading: false,
+      score: event.score,
     );
   }
 
@@ -51,18 +52,26 @@ class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
     final isCorrectAnswer = state.currentQuestion.answer == event.answer;
     final score = state.score + (isCorrectAnswer ? 10 : 0);
 
-    yield state.copyWith(
-      currentQuestion: state.questions.removeAt(0),
-      questions: state.questions,
-      isPlaying: isCorrectAnswer,
-      score: score,
-    );
+    if (state.questions.length - 1 > 0) {
+      yield state.copyWith(
+        currentQuestion: state.questions.removeAt(0),
+        questions: state.questions,
+        isPlaying: isCorrectAnswer,
+        score: score,
+      );
+    } else {
+      add(QuestionsStarted(score: score));
+    }
   }
 
   Stream<QuestionsState> _mapRestartedToState(QuestionsRestarted event) async* {
-    yield state.copyWith(
-      isPlaying: true,
-      score: 0,
-    );
+    if (state.questions.isNotEmpty) {
+      yield state.copyWith(
+        isPlaying: true,
+        score: 0,
+      );
+    } else {
+      add(const QuestionsStarted(score: 0));
+    }
   }
 }

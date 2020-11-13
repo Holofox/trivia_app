@@ -5,7 +5,9 @@ abstract class QuestionsEvent {
 }
 
 class QuestionsStarted extends QuestionsEvent {
-  const QuestionsStarted();
+  const QuestionsStarted({@required this.score});
+
+  final int score;
 }
 
 class QuestionAnswered extends QuestionsEvent {
