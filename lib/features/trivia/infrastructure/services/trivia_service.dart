@@ -6,11 +6,14 @@ import 'package:trivia_app/features/trivia/infrastructure/models/question_diffic
 import 'package:trivia_app/features/trivia/infrastructure/models/question_type.dart';
 
 class TriviaService implements ITriviaService {
-  TriviaService({@required this.client});
+  const TriviaService({
+    @required this.client,
+    @required this.baseApiEndpoint,
+  });
 
   final http.Client client;
 
-  static const String baseApiEndpoint = 'https://opentdb.com/api.php';
+  final String baseApiEndpoint;
 
   @override
   @mustCallSuper

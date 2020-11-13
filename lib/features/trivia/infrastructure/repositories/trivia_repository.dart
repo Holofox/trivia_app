@@ -10,6 +10,7 @@ import 'package:trivia_app/features/trivia/infrastructure/models/question_type.d
 
 class TriviaRepository implements ITriviaRepository {
   const TriviaRepository(this._triviaService);
+
   final ITriviaService _triviaService;
 
   @override

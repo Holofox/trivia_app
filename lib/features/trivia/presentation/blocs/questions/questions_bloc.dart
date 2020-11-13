@@ -15,7 +15,10 @@ class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
   QuestionsBloc() : super(QuestionsState.initial());
 
   final ITriviaRepository _repository = TriviaRepository(
-    TriviaService(client: http.Client()),
+    TriviaService(
+      client: http.Client(),
+      baseApiEndpoint: 'https://opentdb.com/api.php',
+    ),
   );
 
   @override
