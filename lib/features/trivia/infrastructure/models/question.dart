@@ -1,3 +1,4 @@
+import 'package:html_unescape/html_unescape.dart';
 import 'package:meta/meta.dart';
 
 class Question {
@@ -14,7 +15,7 @@ class Question {
       category: json['category'] as String,
       type: json['type'] as String,
       difficulty: json['difficulty'] as String,
-      question: json['question'] as String,
+      question: HtmlUnescape().convert(json['question'] as String),
       answer: json['correct_answer'] == 'True',
     );
   }

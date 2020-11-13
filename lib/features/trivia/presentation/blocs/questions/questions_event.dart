@@ -1,12 +1,19 @@
 part of 'questions_bloc.dart';
 
-@freezed
-abstract class QuestionsEvent with _$QuestionsEvent {
-  const factory QuestionsEvent.started() = QuestionsStarted;
+abstract class QuestionsEvent {
+  const QuestionsEvent();
+}
 
-  const factory QuestionsEvent.answered({
-    @required bool answer,
-  }) = QuestionAnswered;
+class QuestionsStarted extends QuestionsEvent {
+  const QuestionsStarted();
+}
 
-  const factory QuestionsEvent.restarted() = QuestionsRestarted;
+class QuestionAnswered extends QuestionsEvent {
+  const QuestionAnswered({@required this.answer});
+
+  final bool answer;
+}
+
+class QuestionsRestarted extends QuestionsEvent {
+  const QuestionsRestarted();
 }

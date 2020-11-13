@@ -1,28 +1,32 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:trivia_app/features/trivia/domain/repositories/i_trivia_repository.dart';
 import 'package:trivia_app/features/trivia/infrastructure/models/question.dart';
+import 'package:trivia_app/features/trivia/infrastructure/repositories/trivia_repository.dart';
+import 'package:trivia_app/features/trivia/infrastructure/services/trivia_service.dart';
 
-part 'questions_bloc.freezed.dart';
 part 'questions_event.dart';
 part 'questions_state.dart';
 
-@injectable
 class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
-  QuestionsBloc(this._repository) : super(QuestionsState.initial());
+  QuestionsBloc() : super(QuestionsState.initial());
 
-  final ITriviaRepository _repository;
+  final ITriviaRepository _repository = TriviaRepository(
+    TriviaService(client: http.Client()),
+  );
 
   @override
   Stream<QuestionsState> mapEventToState(QuestionsEvent event) async* {
-    yield* event.map(
-      started: _mapStartedToState,
-      answered: _mapAnsweredToState,
-      restarted: _mapRestartedToState,
-    );
+    if (event is QuestionsStarted) {
+      yield* _mapStartedToState(event);
+    } else if (event is QuestionAnswered) {
+      yield* _mapAnsweredToState(event);
+    } else if (event is QuestionsRestarted) {
+      yield* _mapRestartedToState(event);
+    }
   }
 
   Stream<QuestionsState> _mapStartedToState(QuestionsStarted event) async* {

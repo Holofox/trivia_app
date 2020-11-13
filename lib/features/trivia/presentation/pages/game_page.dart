@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swipeable_card/swipeable_card.dart';
+import 'package:trivia_app/features/trivia/infrastructure/models/question.dart';
 import 'package:trivia_app/features/trivia/presentation/blocs/questions/questions_bloc.dart';
-import 'package:trivia_app/features/trivia/presentation/pages/score_page.dart';
 import 'package:trivia_app/features/trivia/presentation/widgets/question_card.dart';
-import 'package:trivia_app/main.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({
     Key key,
-    @required this.state,
+    @required this.currentQuestion,
+    @required this.questions,
+    @required this.score,
   }) : super(key: key);
 
-  final QuestionsState state;
+  final Question currentQuestion;
+  final List<Question> questions;
+  final int score;
 
   static final _cardController = SwipeableWidgetController();
 
@@ -22,7 +25,7 @@ class GamePage extends StatelessWidget {
       children: [
         const SizedBox(height: 40.0),
         Text(
-          '⭐️ ${state.score}',
+          '⭐️ $score',
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
@@ -31,18 +34,18 @@ class GamePage extends StatelessWidget {
         ),
         SwipeableWidget(
           cardController: _cardController,
-          onLeftSwipe: () => setAnswer(context: context, answer: false),
-          onRightSwipe: () => setAnswer(context: context, answer: true),
+          onLeftSwipe: () => _setAnswer(context: context, answer: false),
+          onRightSwipe: () => _setAnswer(context: context, answer: true),
           nextCards: List.generate(
-            state.questions.length,
+            questions.length,
             (index) => Center(
               child: QuestionCard(
-                question: state.questions[index],
+                question: questions[index],
               ),
             ),
           ).reversed.toList(),
           child: QuestionCard(
-            question: state.currentQuestion,
+            question: currentQuestion,
             onAnswered: (answer) {
               if (answer) {
                 _cardController.triggerSwipeRight();
@@ -56,10 +59,9 @@ class GamePage extends StatelessWidget {
     );
   }
 
-  void setAnswer({
+  void _setAnswer({
     @required BuildContext context,
     @required bool answer,
-    bool triggerSwipe = false,
   }) {
     final answered = QuestionAnswered(answer: answer);
     context.bloc<QuestionsBloc>().add(answered);

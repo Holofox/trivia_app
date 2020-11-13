@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trivia_app/features/trivia/presentation/pages/home_page.dart';
+import 'package:trivia_app/features/trivia/presentation/pages/trivia_page.dart';
 
 class TriviaApp extends StatelessWidget {
   const TriviaApp({Key key}) : super(key: key);
@@ -13,7 +13,9 @@ class TriviaApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         cardColor: const Color.fromARGB(255, 26, 28, 28),
       ),
-      home: const HomePage(),
+      home: const TriviaPage(
+        title: 'Quiz',
+      ),
     );
   }
 }
